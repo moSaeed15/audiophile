@@ -1,11 +1,49 @@
 import data from './data.json' assert { type: 'json' };
 
-const btnToggleMenu = document.querySelector('.mobile-nav-toggle');
-// const menuList = document.querySelector('.nav-list');
-// const footerlist = document.querySelector('.footer--list');
+const cartIcon = document.querySelector('.cart-icon');
+const cartModalContainer = document.querySelector('.modal-container-cart');
+const cartModal = document.querySelector('.cart-modal');
+const menuIcon = document.querySelector('.mobile-nav-toggle');
+const menuModalContainer = document.querySelector('.modal-container-menu');
+const overlay = document.querySelector('.overlay');
+const menuModal = document.querySelector('.menu-modal');
 
-const butttons = document.querySelectorAll('.btn');
+console.log(cartIcon);
 
+// display modal if cart icon is pressed
+cartIcon.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  cartModalContainer.style.display = 'block';
+});
+
+// remove modal if anything on the page is clicked except the modal
+
+cartModalContainer.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (cartModal !== e.target.closest('.cart-modal'))
+    cartModalContainer.style.display = 'none';
+});
+
+// Display menu modal after hamburger click
+
+menuIcon.addEventListener('click', function (e) {
+  e.preventDefault();
+  console.log('clicked');
+  menuModalContainer.classList.toggle('hidden');
+  overlay.classList.toggle('hidden');
+});
+
+// Remove menu modal
+overlay.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (menuModal !== e.target.closest('.menu-modal')) {
+    menuModalContainer.classList.toggle('hidden');
+    overlay.classList.toggle('hidden');
+  }
+});
+
+// Function used to generate product markup for different pages
 const generatemarkup = function (id) {
   const product = data.find(d => d.id === id);
   console.log(product);

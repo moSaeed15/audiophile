@@ -122,7 +122,7 @@
     align-items: center;
     height: 60rem;
     gap: 3rem;
-
+    overflow-x: hidden;
     div {
       display: flex;
       gap: 2rem;
@@ -358,6 +358,11 @@
 
     .product-3 {
       width: 65vw;
+    }
+  }
+  .home {
+    .categories {
+      margin-top: 12rem;
     }
   }
 }

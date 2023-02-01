@@ -25,6 +25,8 @@
     data-new-gr-c-s-check-loaded="14.1094.0"
     data-gr-ext-installed=""
   >
+    <div class="overlay hidden"></div>
+
     <nav class="primary-nav">
       <img
         aria-controls="primary-navigation"
@@ -57,8 +59,100 @@
         alt="cart"
         class="cart-icon"
       />
+      <div class="modal-container modal-container-cart">
+        <div class="cart-modal">
+          <div class="cart-modal--header">
+            <h6 class="title">cart (3)</h6>
+            <p class="remove">Remove all</p>
+          </div>
+          <div class="cart-modal--items">
+            <div class="cart-modal--items-item">
+              <img
+                src="./assets/cart/image-xx99-mark-two-headphones.jpg"
+                alt=""
+              />
+              <div class="cart-modal--items-item--text">
+                <p>XX99 MK II</p>
+                <span>$ 2,999</span>
+              </div>
+              <div class="cart-modal--items-item--number"><p>1</p></div>
+            </div>
+            <div class="cart-modal--items-item">
+              <div>
+                <img src="./assets/cart/image-xx59-headphones.jpg" alt="" />
+              </div>
+              <div class="cart-modal--items-item--text">
+                <p>XX59</p>
+                <span>$ 899</span>
+              </div>
+              <div class="cart-modal--items-item--number"><p>1</p></div>
+            </div>
+            <div class="cart-modal--items-item">
+              <div>
+                <img src="./assets/cart/image-yx1-earphones.jpg" alt="" />
+              </div>
+              <div class="cart-modal--items-item--text">
+                <p>YX1</p>
+                <span>$ 599</span>
+              </div>
+              <div class="cart-modal--items-item--number"><p>1</p></div>
+            </div>
+          </div>
+          <div class="cart-modal--footer">
+            <div class="cart-modal--footer-text">
+              <p class="uppercase cart-modal-footer-text--title">total</p>
+              <h6 class="cart-modal--footer--price">$ 5,396</h6>
+            </div>
+            <a href="./checkout.html"
+              ><button class="subtitle text-white btn-orange-dark">
+                Checkout
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
     </nav>
     <div class="content">
+      <div class="modal-container-menu hidden">
+        <section class="categories menu-modal">
+          <div class="categories-box">
+            <img
+              class="categories-box--image"
+              src="assets/shared/desktop/image-category-thumbnail-headphones.png"
+              alt="mark one headphones"
+            />
+            <h5 class="categories-box--title">Headphones</h5>
+            <a class="categories-box--subtitle subtitle" href="./category.html">
+              <span> shop</span></a
+            >
+          </div>
+          <div class="categories-box">
+            <img
+              class="categories-box--image"
+              src="assets/shared/desktop/image-category-thumbnail-speakers.png"
+              alt="mark one headphones"
+            />
+            <h5 class="categories-box--title">Speakers</h5>
+            <a class="categories-box--subtitle subtitle" href="./speakers.html">
+              <span> shop</span></a
+            >
+          </div>
+          <div class="categories-box">
+            <img
+              class="categories-box--image"
+              src="assets/shared/desktop/image-category-thumbnail-earphones.png"
+              alt="mark one headphones"
+            />
+            <h5 class="categories-box--title">Earphones</h5>
+            <a
+              class="categories-box--subtitle subtitle"
+              href="./earphones.html"
+            >
+              <span> shop</span></a
+            >
+          </div>
+        </section>
+      </div>
       <header class="bg-black text-white">
         <h2 class="category-title">earphones</h2>
       </header>

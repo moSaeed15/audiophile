@@ -331,12 +331,13 @@ picture img {
 
     .gallery {
       justify-content: center;
+
+      div picture:last-child {
+        margin-top: 3rem;
+      }
     }
     .other-products {
       padding-inline: 17.5vw;
-
-      // &-content {
-      // }
     }
   }
 }
