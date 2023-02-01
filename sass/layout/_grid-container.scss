@@ -1,0 +1,29 @@
+@use '../base/index' as *;
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 25.5rem));
+  gap: 2rem;
+  justify-content: center;
+}
+
+.box {
+  margin-top: 3rem;
+  justify-self: center;
+  &-color {
+    width: 25.5rem;
+    height: 9.6rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+  }
+  &-content {
+    p {
+      font-weight: $fw-bold;
+    }
+    p span {
+      color: $black;
+      opacity: 0.5;
+      margin-right: 7rem;
+    }
+  }
+}

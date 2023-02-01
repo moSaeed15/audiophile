@@ -1,0 +1,125 @@
+@use '../base/index' as *;
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12rem;
+  height: 65rem;
+  gap: 4rem;
+
+  &--list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+
+    > * {
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      line-height: 25px;
+      font-weight: bold;
+    }
+    > *:hover,
+    > *:focus {
+      color: $orange-dark;
+    }
+  }
+  &--text {
+    text-align: center;
+    opacity: 0.5;
+    width: 35ch;
+  }
+  &--copyright {
+    opacity: 0.5;
+  }
+  &--social {
+    display: flex;
+    gap: 1.5rem;
+    &-icon:hover,
+    &-icon:focus {
+      > * {
+        fill: $orange-dark;
+      }
+    }
+  }
+  &::before {
+    content: '';
+    background-color: $orange-dark;
+    height: 6px;
+    width: 10rem;
+  }
+  .logo {
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+  }
+
+  &-end {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+  }
+}
+
+@media (min-width: 40em) {
+  .footer {
+    height: 40rem;
+    align-items: start;
+    > * {
+      margin-left: 3rem;
+    }
+    &--list {
+      flex-direction: row;
+    }
+    &::before {
+      margin-left: 3rem;
+    }
+    &--copyright {
+      display: inline;
+    }
+    &--text {
+      width: fit-content;
+      margin-right: 2rem;
+      text-align: left;
+    }
+    &-end {
+      display: flex;
+      flex-direction: row;
+      align-self: stretch;
+      justify-content: space-between;
+    }
+    &--social {
+      margin-right: 2rem;
+    }
+  }
+}
+@media (min-width: 60em) {
+  .footer {
+    overflow: hidden;
+    height: 36.5rem;
+    padding-inline: 8vw;
+    padding-right: 14.25vw;
+    .logo-list {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    &--text {
+      width: 54ch;
+    }
+    &--social {
+      margin-left: 5rem;
+      margin-right: 0;
+      margin-top: -15rem;
+    }
+  }
+}
+
+@media (min-width: 80em) {
+  .footer {
+    padding-inline: 15vw;
+  }
+}

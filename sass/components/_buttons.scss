@@ -1,0 +1,36 @@
+@use '../base/utilities' as *;
+
+button {
+  border: 0;
+}
+.btn-orange-dark {
+  width: 16rem;
+  height: 4.8rem;
+  background-color: $orange-dark;
+  border: 0;
+  &:hover,
+  &:focus {
+    background-color: $orange-light;
+  }
+}
+.btn-dark {
+  width: 16rem;
+  height: 4.8rem;
+  background-color: $black;
+  &:hover,
+  &:focus {
+    background-color: #4c4c4c;
+  }
+}
+
+.btn-transparent {
+  width: 16rem;
+  height: 4.8rem;
+  background-color: transparent;
+  border: 2px solid $black;
+  &:hover,
+  &:focus {
+    background-color: $black;
+    color: white;
+  }
+}
