@@ -7,13 +7,13 @@ const menuIcon = document.querySelector('.mobile-nav-toggle');
 const menuModalContainer = document.querySelector('.modal-container-menu');
 const overlay = document.querySelector('.overlay');
 const menuModal = document.querySelector('.menu-modal');
-
-console.log(cartIcon);
+const navbar = document.querySelector('primary-nav');
 
 // display modal if cart icon is pressed
 cartIcon.addEventListener('click', function (e) {
   e.preventDefault();
-
+  menuModalContainer.classList.add('hidden');
+  overlay.classList.add('hidden');
   cartModalContainer.style.display = 'block';
 });
 
@@ -29,7 +29,6 @@ cartModalContainer.addEventListener('click', function (e) {
 
 menuIcon.addEventListener('click', function (e) {
   e.preventDefault();
-  console.log('clicked');
   menuModalContainer.classList.toggle('hidden');
   overlay.classList.toggle('hidden');
 });
@@ -37,16 +36,21 @@ menuIcon.addEventListener('click', function (e) {
 // Remove menu modal
 overlay.addEventListener('click', function (e) {
   e.preventDefault();
+
+  console.log(navbar, e.target.closest('primary-nav'));
+
   if (menuModal !== e.target.closest('.menu-modal')) {
     menuModalContainer.classList.toggle('hidden');
     overlay.classList.toggle('hidden');
   }
 });
 
+// rem
+
 // Function used to generate product markup for different pages
 const generatemarkup = function (id) {
   const product = data.find(d => d.id === id);
-  console.log(product);
+  // console.log(product);
 
   return `  
   <a href="#" class="back">Go Back</a>
