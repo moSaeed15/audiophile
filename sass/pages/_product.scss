@@ -152,21 +152,20 @@ picture img {
     .product {
       overflow: hidden;
       flex-direction: row;
-      gap: 6vw;
-      justify-content: space-between;
+      gap: 10vw;
 
       &--content {
         gap: 1.5rem;
         align-items: flex-start;
+        justify-content: center;
+        flex-grow: 1;
+
         > * {
           width: 45vw;
         }
         &-title {
           width: 20ch;
           letter-spacing: 1px;
-        }
-        &-text {
-          width: 35vw;
         }
       }
       h6 {
@@ -177,8 +176,8 @@ picture img {
       }
       picture {
         img {
-          height: min(70vw, 45rem);
-          min-width: 35vw;
+          flex-grow: 1;
+          max-height: 48rem;
         }
       }
     }

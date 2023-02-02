@@ -1,5 +1,8 @@
 .category {
   header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     h2 {
       font-size: 2.8rem;
       text-align: center;
@@ -41,6 +44,22 @@
   }
 }
 
+@media (min-width: 40em) {
+  .products {
+    &-box {
+      &--content {
+        h2 {
+          width: 15ch;
+        }
+        p {
+          opacity: 0.5;
+          width: 65ch;
+        }
+      }
+    }
+  }
+}
+
 @media (min-width: 60em) {
   .category {
     header {
@@ -64,13 +83,16 @@
         display: flex;
         flex-direction: row;
         gap: 12.5rem;
-        justify-content: center;
+        justify-content: flex-start;
         &--content {
           display: flex;
           flex-direction: column;
           gap: 3.2rem;
           text-align: left;
           align-items: flex-start;
+          p {
+            width: 40ch;
+          }
         }
         picture {
           img {
@@ -80,7 +102,7 @@
         }
         &--2 {
           picture {
-            order: -1;
+            order: 0;
           }
         }
       }
@@ -99,6 +121,17 @@
     .products {
       &-box {
         padding-inline: 17vw;
+        justify-content: flex-start;
+        picture {
+          flex-grow: 1;
+
+          img {
+            width: 100%;
+            height: 100%;
+            max-width: 54rem;
+            max-height: 56rem;
+          }
+        }
         &--content {
           display: flex;
           flex-direction: column;

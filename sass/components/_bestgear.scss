@@ -58,15 +58,17 @@
     display: flex;
     flex-direction: row;
     margin-top: 2rem;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 2rem;
     padding-inline: 10vw;
 
     > * {
-      width: 35.5vw;
+      // width: 35.5vw;
       img {
-        width: 35.5vw;
-        height: 34.8vw;
+        flex-grow: 1;
+        width: 100%;
+        max-height: 58.8rem;
+        margin-right: 1rem;
       }
     }
     div {
@@ -74,18 +76,19 @@
       flex-direction: column;
       gap: 3rem;
       order: -1;
-      margin-left: -2rem;
     }
     &--title {
       text-align: left;
       max-width: 15ch;
       font-size: 3.5rem;
       align-self: flex-start;
+      padding-inline: 0;
     }
     &--text {
       width: 40ch;
       text-align: left;
       align-self: flex-start;
+      padding-inline: 0;
     }
   }
 }
@@ -94,7 +97,7 @@
   .best-gear {
     justify-content: center;
 
-    padding-inline: 15vw;
+    padding-inline: 17vw;
     div {
       display: flex;
       flex-direction: column;

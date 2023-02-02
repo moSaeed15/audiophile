@@ -67,7 +67,7 @@
   .categories {
     gap: 2rem;
     justify-content: center;
-    padding-inline: 10vw;
+    padding-inline: 9.25vw;
     &-box {
       width: 26vw;
       height: 20rem;
@@ -88,6 +88,6 @@
 }
 @media (min-width: 80em) {
   .categories {
-    padding-inline: 17.5vw;
+    padding-inline: 17vw;
   }
 }
