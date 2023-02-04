@@ -7,7 +7,23 @@ const menuIcon = document.querySelector('.mobile-nav-toggle');
 const menuModalContainer = document.querySelector('.modal-container-menu');
 const overlay = document.querySelector('.overlay');
 const menuModal = document.querySelector('.menu-modal');
-const navbar = document.querySelector('primary-nav');
+const navbar = document.querySelector('.primary-nav');
+const goBack = document.querySelector('.back');
+
+// Form validation
+
+const form = document.querySelector('.checkout-form');
+const fullName = document.querySelector('#full-name');
+const email = document.querySelector('#email');
+const phoneNumber = document.querySelector('#phone-number');
+const address = document.querySelector('#address');
+const ZIP = document.querySelector('#ZIP');
+const city = document.querySelector('#city');
+const country = document.querySelector('#country');
+const eMoneyRadio = document.querySelector('#e-money');
+const cashOnDelieveryRadio = document.querySelector('#cash-on-delievery');
+const eMoneyNumber = document.querySelector('#e-money-number');
+const eMoneyPin = document.querySelector('#e-money-pin');
 
 // display modal if cart icon is pressed
 cartIcon.addEventListener('click', function (e) {
@@ -18,7 +34,6 @@ cartIcon.addEventListener('click', function (e) {
 });
 
 // remove modal if anything on the page is clicked except the modal
-
 cartModalContainer.addEventListener('click', function (e) {
   e.preventDefault();
   if (cartModal !== e.target.closest('.cart-modal'))
@@ -26,7 +41,6 @@ cartModalContainer.addEventListener('click', function (e) {
 });
 
 // Display menu modal after hamburger click
-
 menuIcon.addEventListener('click', function (e) {
   e.preventDefault();
   menuModalContainer.classList.toggle('hidden');
@@ -34,18 +48,25 @@ menuIcon.addEventListener('click', function (e) {
 });
 
 // Remove menu modal
-overlay.addEventListener('click', function (e) {
-  e.preventDefault();
+if (overlay)
+  overlay.addEventListener('click', function (e) {
+    e.preventDefault();
 
-  console.log(navbar, e.target.closest('primary-nav'));
+    console.log(navbar, e.target.closest('primary-nav'));
 
-  if (menuModal !== e.target.closest('.menu-modal')) {
-    menuModalContainer.classList.toggle('hidden');
-    overlay.classList.toggle('hidden');
-  }
-});
+    if (menuModal !== e.target.closest('.menu-modal')) {
+      menuModalContainer.classList.toggle('hidden');
+      overlay.classList.toggle('hidden');
+    }
+  });
 
-// rem
+// Go back
+if (goBack)
+  goBack.addEventListener('click', function (e) {
+    e.preventDefault();
+    console.log(window.history);
+    window.history.back();
+  });
 
 // Function used to generate product markup for different pages
 const generatemarkup = function (id) {
@@ -368,5 +389,136 @@ const generatemarkup = function (id) {
 // const content = document.querySelector('.content');
 // content.innerHTML = '';
 // const markup = generatemarkup(5);
-
 // content.insertAdjacentHTML('afterbegin', markup);
+
+// Form validation
+
+// const submitBtn = document.querySelector('#submit-btn');
+const cashOnDelieveryContainer = document.querySelector(
+  '.checkout-form--payment--cash'
+);
+const inputs = [fullName, email, phoneNumber, address, ZIP, city, country];
+
+if (eMoneyRadio.hasAttribute('checked')) {
+  eMoneyRadio.parentElement.classList.add('set-border');
+} else {
+  cashOnDelieveryRadio.parentElement.classList.add('set-border');
+}
+
+eMoneyRadio.addEventListener('click', function () {
+  if (eMoneyRadio.checked) {
+    eMoneyRadio.parentElement.classList.add('set-border');
+    cashOnDelieveryRadio.parentElement.classList.remove('set-border');
+    eMoneyNumber.parentElement.style.display = 'flex';
+    cashOnDelieveryContainer.style.display = 'none';
+    eMoneyPin.parentElement.style.display = 'flex';
+  }
+});
+
+cashOnDelieveryRadio.addEventListener('click', function () {
+  if (cashOnDelieveryRadio.checked) {
+    cashOnDelieveryRadio.parentElement.classList.add('set-border');
+    eMoneyRadio.parentElement.classList.remove('set-border');
+    eMoneyNumber.parentElement.style.display = 'none';
+    eMoneyPin.parentElement.style.display = 'none';
+    cashOnDelieveryContainer.style.display = 'flex';
+  }
+});
+
+const showError = function (input) {
+  const labelsChildren = input.parentElement.children[0];
+  const label = labelsChildren.children[0];
+  const small = labelsChildren.children[1];
+  small.classList.add('error-label');
+  label.classList.add('error-label');
+  input.classList.add('error-input');
+};
+const showSuccess = function (input) {
+  const labelsChildren = input.parentElement.children[0];
+  const label = labelsChildren.children[0];
+  const small = labelsChildren.children[1];
+  small.classList.remove('error-label');
+  label.classList.remove('error-label');
+  input.classList.remove('error-input');
+};
+
+function checkEmail(input) {
+  const re =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (re.test(input.value.trim())) {
+    showSuccess(input);
+    return true;
+  } else {
+    showError(input);
+    return false;
+  }
+}
+
+function checkLength(input, min, max) {
+  if (input.value.length < min) {
+    showError(input);
+  } else if (input.value.length > max) {
+    showError(input);
+  } else {
+    showSuccess(input);
+  }
+}
+
+const isLetters = function (input) {
+  const letters = /^[A-Za-z]+$/;
+  if (/[a-z]/i.test(input.value)) {
+    showSuccess(input);
+    return true;
+  } else {
+    showError(input);
+    return false;
+  }
+};
+
+const checkRequired = function (inputsArr) {
+  let isValid = [];
+  inputsArr.forEach(input => {
+    // const labelsChildren = input.parent  Element.children[0];
+    // const small = labelsChildren.children[1];
+    if (input.value.trim() === '') {
+      showError(input);
+      isValid.push(false);
+    } else {
+      showSuccess(input);
+      isValid.push(true);
+    }
+  });
+  return isValid;
+};
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const isEmpty = checkRequired(inputs);
+  const emailIsValid = checkEmail(email);
+  const nameIsValid = isLetters(fullName);
+  const passedAllChecks = [];
+  let eMoneyNumberIsValid;
+  let eMoneyPinIsValid;
+  if (eMoneyNumber) [eMoneyNumberIsValid] = checkRequired([eMoneyNumber]);
+
+  if (eMoneyPin) [eMoneyPinIsValid] = checkRequired([eMoneyPin]);
+
+  isEmpty.forEach(input => {
+    passedAllChecks.push(input);
+  });
+  passedAllChecks.push(eMoneyNumberIsValid);
+  passedAllChecks.push(eMoneyPinIsValid);
+  passedAllChecks.push(emailIsValid);
+  passedAllChecks.push(nameIsValid);
+
+  let formIsValid = true;
+
+  passedAllChecks.forEach(validity => {
+    if (!validity) formIsValid = false;
+  });
+});
+
+//Cart State
+
+// cartState{
+
+// }

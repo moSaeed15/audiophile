@@ -21,6 +21,8 @@
   </head>
 
   <body class="category">
+    <div class="overlay hidden"></div>
+
     <nav class="primary-nav">
       <img
         aria-controls="primary-navigation"
@@ -99,7 +101,10 @@
               <h6 class="cart-modal--footer--price">$ 5,396</h6>
             </div>
             <a href="./checkout.html"
-              ><button class="subtitle text-white btn-orange-dark">
+              ><button
+                onclick="window.location.href = 'checkout.html';"
+                class="subtitle text-white btn-orange-dark"
+              >
                 Checkout
               </button></a
             >

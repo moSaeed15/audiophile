@@ -13,6 +13,9 @@
   font-weight: 500;
   margin-left: 3rem;
   cursor: pointer;
+  &:hover {
+    color: $orange-dark;
+  }
 }
 picture img {
   border-radius: 5px;
@@ -62,6 +65,14 @@ picture img {
       opacity: 0.25;
       cursor: pointer;
       padding-block: 1rem;
+    }
+    p:hover::after {
+      color: $orange-dark;
+      opacity: 1;
+    }
+    p:hover::before {
+      color: $orange-dark;
+      opacity: 1;
     }
   }
 }
