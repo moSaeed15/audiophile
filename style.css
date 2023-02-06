@@ -884,13 +884,13 @@ body {
   }
 }
 .modal-container-checkout {
-  position: fixed;
+  position: absolute;
   z-index: 5;
   background-color: #fff;
   top: 0;
   left: 50%;
   background-color: white;
-  transform: translate(-50%, 25%);
+  transform: translate(-50%, 5%);
   border-radius: 8px;
   padding: 4.8rem;
   width: 87%;
@@ -1903,6 +1903,9 @@ picture img {
 .checkout-summary-item {
   display: flex;
   justify-content: space-between;
+}
+.checkout-summary-item:first-child {
+  margin-top: 3rem;
 }
 .checkout-summary-item img {
   margin-right: 1.6rem;

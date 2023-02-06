@@ -511,7 +511,6 @@ if (form)
     const passedAllChecks = [];
     let eMoneyNumberIsValid = true;
     let eMoneyPinIsValid = true;
-    console.log(eMoneyNumber);
     if (eMoneyNumber.style.display !== 'none')
       [eMoneyNumberIsValid] = checkRequired([eMoneyNumber]);
 
@@ -521,7 +520,6 @@ if (form)
     isEmpty.forEach(input => {
       passedAllChecks.push(input);
     });
-    console.log(eMoneyNumberIsValid, eMoneyPinIsValid);
     passedAllChecks.push(eMoneyNumberIsValid);
     passedAllChecks.push(eMoneyPinIsValid);
     passedAllChecks.push(emailIsValid);
@@ -791,7 +789,6 @@ window.addEventListener('load', function (e) {
   const checkoutPage = document.querySelector('.checkout-page');
   const summaryItems = document.querySelector('.checkout-summary-items');
   const totalPrice = document.querySelector('#checkout-total-price');
-  const totalShipping = document.querySelector('#checkout-shipping');
   const VAT = document.querySelector('#checkout-VAT');
   const grandTotal = document.querySelector('#checkout-grand-total');
   if (checkoutPage) {
@@ -815,12 +812,91 @@ window.addEventListener('load', function (e) {
       .join('');
     summaryItems.insertAdjacentHTML('afterbegin', markup);
 
-    const cartItemPrice = Array.from(document.querySelectorAll('#cart-price'));
-
-    const totalPrice = cartItemPrice.reduce(
-      (acc, curr) => acc + +curr.innerText.slice(1) * +quantity,
+    const totalSummaryPrice = cartItemsArray.reduce(
+      (acc, curr) => acc + curr.price * curr.quantity,
       0
     );
-    totalPriceElement.innerText = '$ ' + totalPrice;
+
+    totalPrice.innerText = '$ ' + totalSummaryPrice;
+    VAT.innerText = '$ ' + Math.round(totalSummaryPrice * 0.2);
+    grandTotal.innerText =
+      '$ ' + (Math.round(totalSummaryPrice * 0.2) + totalSummaryPrice + 50);
   }
 });
+
+const submitBtn = document.getElementById('submit-btn');
+if (submitBtn)
+  submitBtn.addEventListener('click', function () {
+    const checkoutModalItems = document.querySelector(
+      '.modal-container-checkout--content-main'
+    );
+    checkoutModalItems.innerHTML = '';
+    const markup = cartItemsArray
+      .map(
+        (item, i) =>
+          `            
+  <div class="modal-container-checkout--content-item ${i > 0 ? 'hidden' : ''}">
+  <div style="display: flex">
+    <img src=${item.cartImage} />
+    <div class="modal-container-checkout--content-item--text">
+      <p>${item.cartItemName}</p>
+      <span>$ ${item.price}</span>
+    </div>
+  </div>
+  <p class="modal-container-checkout--content-item--quantity">x${
+    item.quantity
+  }</p>
+  </div>`
+      )
+      .join('');
+
+    const finalMarkup =
+      markup +
+      `<div class="modal-container-checkout--content-main-others"><p id="other-items">and ${
+        cartItemsArray.length - 1
+      } other item(s)</p></div>`;
+    checkoutModalItems.insertAdjacentHTML('afterbegin', finalMarkup);
+
+    // const checkoutModalItem = document.querySelectorAll(
+    //   '#modal-container-checkout--content-item'
+    // );
+    const checkoutModalTotal = document.querySelector('#checkout-modal-total');
+    const grandTotal = document.querySelector('#checkout-grand-total');
+
+    checkoutModalTotal.innerText = grandTotal.innerText;
+    ExpandShrinkOtherItem(checkoutModalItems);
+  });
+
+// Expanding/shrinking checkout modal items
+
+function ExpandShrinkOtherItem(ItemsContainer) {
+  const otherItems = document.querySelector('#other-items');
+
+  if (otherItems)
+    otherItems.addEventListener('click', function () {
+      const items = Array.from(ItemsContainer.children);
+
+      const hiddenItem = items.filter(
+        (item, i) => i > 0 && i < items.length - 1
+      );
+      console.log(hiddenItem);
+      if (otherItems.innerText !== 'View less') {
+        // Expand
+        hiddenItem.forEach(item => {
+          item.classList.remove('hidden');
+        });
+        otherItems.innerText = 'View less';
+      } else {
+        console.log('dandkaln');
+        hiddenItem.forEach(item => {
+          console.log(item);
+          item.classList.add('hidden');
+        });
+        otherItems.innerText = `and ${cartItemsArray.length - 1} other item(s)`;
+      }
+    });
+}
+
+// Clear cart after checkout completion
+
+const backToHome = document.querySelector('#back-to-home');
