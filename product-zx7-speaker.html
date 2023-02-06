@@ -63,51 +63,22 @@
       <div class="modal-container modal-container-cart">
         <div class="cart-modal">
           <div class="cart-modal--header">
-            <h6 class="title">cart (3)</h6>
+            <h6 class="title">cart (<span id="number-of-items">0</span>)</h6>
             <p class="remove">Remove all</p>
           </div>
-          <div class="cart-modal--items">
-            <div class="cart-modal--items-item">
-              <img
-                src="./assets/cart/image-xx99-mark-two-headphones.jpg"
-                alt=""
-              />
-              <div class="cart-modal--items-item--text">
-                <p>XX99 MK II</p>
-                <span>$ 2,999</span>
-              </div>
-              <div class="cart-modal--items-item--number"><p>1</p></div>
-            </div>
-            <div class="cart-modal--items-item">
-              <div>
-                <img src="./assets/cart/image-xx59-headphones.jpg" alt="" />
-              </div>
-              <div class="cart-modal--items-item--text">
-                <p>XX59</p>
-                <span>$ 899</span>
-              </div>
-              <div class="cart-modal--items-item--number"><p>1</p></div>
-            </div>
-            <div class="cart-modal--items-item">
-              <div>
-                <img src="./assets/cart/image-yx1-earphones.jpg" alt="" />
-              </div>
-              <div class="cart-modal--items-item--text">
-                <p>YX1</p>
-                <span>$ 599</span>
-              </div>
-              <div class="cart-modal--items-item--number"><p>1</p></div>
-            </div>
-          </div>
+          <div class="cart-modal--items"></div>
           <div class="cart-modal--footer">
             <div class="cart-modal--footer-text">
-              <p class="uppercase cart-modal-footer-text--title">total</p>
-              <h6 class="cart-modal--footer--price">$ 5,396</h6>
+              <p class="uppercase cart-modal-footer-text--title hidden">
+                total
+              </p>
+              <h6 id="total-price" class="cart-modal--footer--price"></h6>
             </div>
             <a href="./checkout.html"
               ><button
                 onclick="window.location.href = 'checkout.html';"
-                class="subtitle text-white btn-orange-dark"
+                id="checkout-btn"
+                class="subtitle text-white btn-orange-dark hidden"
               >
                 Checkout
               </button></a
@@ -180,8 +151,16 @@
           </p>
           <h6>$ 3500</h6>
           <div class="product--cart">
-            <p class="subtitle">1</p>
-            <button class="btn-orange-dark subtitle text-white">
+            <div>
+              <p>-</p>
+              <p id="cart-quantity" class="subtitle">1</p>
+              <p>+</p>
+            </div>
+            <button
+              data-ID="5"
+              id="add-to-cart"
+              class="btn-orange-dark subtitle text-white"
+            >
               add to cart
             </button>
           </div>

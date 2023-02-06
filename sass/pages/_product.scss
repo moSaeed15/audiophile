@@ -44,35 +44,32 @@ picture img {
   &--cart {
     display: flex;
     gap: 1.6rem;
-    p {
+    div {
       width: 12rem;
-      height: 4.8rem;
+      background-color: $grey;
       display: flex;
-      justify-content: space-evenly;
-      background-color: $grey;
+      justify-content: space-between;
       align-items: center;
-    }
-    p::after {
-      content: '+';
-      background-color: $grey;
-      opacity: 0.25;
-      cursor: pointer;
-      padding-block: 1rem;
-    }
-    p::before {
-      content: '-';
-      background-color: $grey;
-      opacity: 0.25;
-      cursor: pointer;
-      padding-block: 1rem;
-    }
-    p:hover::after {
-      color: $orange-dark;
-      opacity: 1;
-    }
-    p:hover::before {
-      color: $orange-dark;
-      opacity: 1;
+      height: 4.8rem;
+      padding-inline: 2rem;
+      p {
+        &:first-child {
+          opacity: 0.25;
+          cursor: pointer;
+          &:hover {
+            color: $orange-dark;
+            opacity: 1;
+          }
+        }
+        &:last-child {
+          opacity: 0.25;
+          cursor: pointer;
+          &:hover {
+            color: $orange-dark;
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 }

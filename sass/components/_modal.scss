@@ -39,10 +39,17 @@
   &--header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 3.2rem;
     align-items: center;
+    height: 2.5rem;
     .remove {
+      cursor: pointer;
       opacity: 0.5;
       text-decoration: underline;
+      &:hover {
+        opacity: 1;
+        color: $orange-dark;
+      }
     }
   }
   &--items {
@@ -61,36 +68,33 @@
       }
 
       &--number {
+        display: flex;
+        width: 9.6rem;
+        justify-content: space-between;
+        background-color: $grey;
+        padding-inline: 1rem;
         p {
-          width: 9.6rem;
           height: 3.2rem;
           display: flex;
           justify-content: space-evenly;
-          background-color: $grey;
           align-items: center;
           font-weight: bold;
-        }
-        p::after {
-          content: '+';
-          background-color: $grey;
-          opacity: 0.25;
-          cursor: pointer;
-          padding-block: 0.5rem;
-        }
-        p::before {
-          content: '-';
-          background-color: $grey;
-          opacity: 0.25;
-          cursor: pointer;
-          padding-block: 0.5rem;
-        }
-        p:hover::after {
-          color: $orange-dark;
-          opacity: 1;
-        }
-        p:hover::before {
-          color: $orange-dark;
-          opacity: 1;
+          &:first-child {
+            opacity: 0.25;
+            cursor: pointer;
+            &:hover {
+              color: $orange-dark;
+              opacity: 1;
+            }
+          }
+          &:last-child {
+            opacity: 0.25;
+            cursor: pointer;
+            &:hover {
+              color: $orange-dark;
+              opacity: 1;
+            }
+          }
         }
       }
       &--text {
@@ -110,8 +114,9 @@
     &-text {
       display: flex;
       justify-content: space-between;
-      padding-block: 2rem;
+      padding-block: 4rem;
       align-items: center;
+      height: 2.5rem;
       &--title {
         opacity: 0.5;
       }
@@ -156,6 +161,17 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 5;
 }
+
+.overlay-checkout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 5;
+}
+
 .modal-container-menu {
   position: absolute;
   width: 100%;
@@ -188,17 +204,17 @@ body {
   }
 }
 .modal-container-checkout {
-  position: absolute;
+  position: fixed;
   z-index: 5;
   background-color: #fff;
   top: 0;
   left: 50%;
   background-color: white;
-
-  transform: translate(-50%, 10%);
+  transform: translate(-50%, 25%);
   border-radius: 8px;
   padding: 4.8rem;
   width: 87%;
+  max-width: 54rem;
   &--header {
     img {
       width: 6.4rem;
@@ -215,6 +231,7 @@ body {
   }
   &--content {
     &-main {
+      border-radius: 8px 8px 0 0;
       background-color: $grey;
       padding: 2.4rem;
       &-others {
@@ -234,6 +251,7 @@ body {
     }
     &-item {
       display: flex;
+      justify-content: space-between;
       img {
         width: 5rem;
         height: 5rem;
@@ -241,7 +259,6 @@ body {
       &--text {
         min-width: 7.5rem;
         margin-left: 2.7rem;
-        margin-right: 5.9rem;
         p {
           font-weight: bold;
         }
@@ -254,6 +271,51 @@ body {
       &--quantity {
         opacity: 0.5;
         font-weight: bold;
+      }
+    }
+    &-total {
+      border-radius: 0 0 8px 8px;
+      margin-bottom: 2.3rem;
+      background-color: $black;
+      padding-inline: 2.4rem;
+      padding-top: 1.5rem;
+      padding-bottom: 2.5rem;
+      p {
+        opacity: 0.5;
+        color: $white;
+        margin-bottom: 10px;
+      }
+      h6 {
+        margin-block: 0;
+        color: $white;
+      }
+    }
+  }
+  button {
+    width: 100%;
+  }
+}
+
+@media (min-width: 40em) {
+  .modal-container-checkout {
+    &--content {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 2rem;
+      &-main {
+        border-radius: 8px 0 0 8px;
+        flex-basis: 55%;
+        // flex-grow: 1;
+      }
+
+      &-total {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        border-radius: 0 8px 8px 0;
+        flex-grow: 1;
+
+        margin-bottom: 0;
       }
     }
   }

@@ -58,7 +58,7 @@
     &--payment {
       display: flex;
       flex-direction: column;
-      &-text {
+      &--text {
         span {
           margin-block: 1.7rem;
           display: block;
@@ -121,6 +121,10 @@
   padding-block: 2.4rem;
   margin-top: 3.2rem;
   border-radius: 8px;
+  h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
   &-item {
     display: flex;
     justify-content: space-between;
@@ -172,6 +176,7 @@
     }
     button {
       width: 100%;
+      margin-top: 2rem;
     }
   }
 }
