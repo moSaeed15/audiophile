@@ -899,4 +899,8 @@ function ExpandShrinkOtherItem(ItemsContainer) {
 
 // Clear cart after checkout completion
 
-const backToHome = document.querySelector('#back-to-home');
+if (backHomeBtn)
+  backHomeBtn.addEventListener('click', function (e) {
+    cartItemsArray.length = 0;
+    UpdateLocalStorage();
+  });
